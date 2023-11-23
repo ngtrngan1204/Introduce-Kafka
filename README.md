@@ -76,16 +76,20 @@ Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging kh�
 
 Các properties của consumer được sử dụng để cấu hình cách thức hoạt động của consumer. Một số properties quan trọng bao gồm:
 
-**group.id:** Đây là ID của nhóm consumer mà consumer thuộc về. Các consumer trong cùng một nhóm sẽ chia sẻ nhau công việc tiêu thụ dữ liệu.  
-**bootstrap.servers:** Đây là danh sách các URL của brokers Kafka.  
-**key.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các khóa dữ liệu.  
-**value.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các giá trị dữ liệu.  
-**auto.offset.reset:** Đây là cách thức mà consumer sẽ xử lý các offset dữ liệu. Có ba giá trị có thể được sử dụng:  
-**earliest:** Consumer sẽ bắt đầu từ offset đầu tiên của topic.  
-**latest:** Consumer sẽ bắt đầu từ offset mới nhất của topic.  
-**none:** Consumer sẽ không xử lý các offset dữ liệu.  
-**max.poll.records:** Đây là số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
-**session.timeout.ms:** Đây là khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
+- **group.id:** Đây là ID của nhóm consumer mà consumer thuộc về. Các consumer trong cùng một nhóm sẽ chia sẻ nhau công việc tiêu thụ dữ liệu.  
+
+- **bootstrap.servers:** Đây là danh sách các URL của brokers Kafka.  
+
+- **key.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các khóa dữ liệu.  
+
+- **value.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các giá trị dữ liệu.  
+
+- **auto.offset.reset:** Đây là cách thức mà consumer sẽ xử lý các offset dữ liệu. Có ba giá trị có thể được sử dụng:  
+  - **earliest:** Consumer sẽ bắt đầu từ offset đầu tiên của topic.  
+  - **latest:** Consumer sẽ bắt đầu từ offset mới nhất của topic.  
+  - **none:** Consumer sẽ không xử lý các offset dữ liệu.  
+- **max.poll.records:** Đây là số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
+- **session.timeout.ms:** Đây là khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
 
 ## Các thông số cần quan tâm
 Khi sử dụng Kafka consumer, cần quan tâm đến các thông số sau:
