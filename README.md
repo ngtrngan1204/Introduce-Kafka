@@ -7,20 +7,15 @@ Kafka là một hệ thống truyền tin (messaging system) mã nguồn mở đ
 
 ## Các Khái Niệm Cơ Bản
 ### **1. Topic**
-**Khái niệm:** Topic trong Kafka là một phân loại hoặc danh mục cho các tin nhắn.  
-**Vai trò:** Mỗi tin nhắn được sản xuất (published) và tiêu thụ (consumed) trong Kafka đều thuộc về một topic cụ thể.
+Là một phân loại hoặc danh mục cho các tin nhắn. Mỗi tin nhắn được sản xuất (published) và tiêu thụ (consumed) trong Kafka đều thuộc về một topic cụ thể.
 ### **2. Partition**
-**Khái niệm:** Partition là một phần của một topic trong Kafka.  
-**Vai trò:** Các partition cho phép dữ liệu được chia nhỏ, phân tán trên nhiều máy chủ (brokers) để tăng khả năng mở rộng và hiệu suất.
+Partition là một phần của một topic trong Kafka. Các partition cho phép dữ liệu được chia nhỏ, phân tán trên nhiều máy chủ (brokers) để tăng khả năng mở rộng và hiệu suất.
 ### **3. Producer**
-**Khái niệm:** Producer là thành phần gửi dữ liệu (messages) tới Kafka topic.  
-**Vai trò:** Nó chịu trách nhiệm sản xuất dữ liệu và gửi nó tới các topic cụ thể trong Kafka.
+Producer là thành phần gửi dữ liệu (messages) tới Kafka topic. Nó chịu trách nhiệm sản xuất dữ liệu và gửi nó tới các topic cụ thể trong Kafka.
 ### **4. Consumer**
-**Khái niệm:** Consumer là thành phần nhận và xử lý dữ liệu từ Kafka topic.  
-**Vai trò:** Consumer đọc các tin nhắn từ các topic và thực hiện các hành động như lưu trữ, xử lý hoặc truyền dữ liệu đó ra ngoài.
+Là thành phần nhận và xử lý dữ liệu từ Kafka topic. Consumer đọc các tin nhắn từ các topic và thực hiện các hành động như lưu trữ, xử lý hoặc truyền dữ liệu đó ra ngoài.
 ### **5. Ứng Dụng**
-**Khái niệm:** Các ứng dụng (applications) sử dụng Kafka để gửi và nhận dữ liệu.  
-**Vai trò:** Các ứng dụng có thể là producers (gửi dữ liệu) hoặc consumers (nhận và xử lý dữ liệu) trong hệ thống Kafka.
+Các ứng dụng có thể là producers (gửi dữ liệu) hoặc consumers (nhận và xử lý dữ liệu) trong hệ thống Kafka.
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/2f3667e5-230b-4b99-9f64-040eedc82327)
 
@@ -28,101 +23,94 @@ Kafka là một hệ thống truyền tin (messaging system) mã nguồn mở đ
 ## Tại sao chọn Kafka?
 Kafka có một số ưu điểm mà khiến nó trở thành lựa chọn phổ biến:
 
-**1. Tính Khả Dụng và Bền Bỉ:** Kafka được thiết kế để xử lý lưu lượng dữ liệu lớn và có khả năng mở rộng cao mà vẫn duy trì tính đáng tin cậy.
+**1. Tính Khả Dụng và Bền Bỉ:** 
 
-**2. Phân Tán và Hiệu Suất Cao:** Các partition trong Kafka cho phép dữ liệu được phân tán trên nhiều máy chủ, tăng hiệu suất và khả năng mở rộng của hệ thống.
+**2. Phân Tán và Hiệu Suất Cao:**
 
-**3. Hỗ Trợ Tính Toàn Vẹn Dữ Liệu:** Kafka đảm bảo việc lưu trữ và xử lý dữ liệu một cách an toàn và toàn vẹn.
+**3. Hỗ Trợ Tính Toàn Vẹn Dữ Liệu:** 
 
-**4. Phù Hợp với Dữ Liệu Thời Gian Thực:** Kafka có khả năng xử lý dữ liệu thời gian thực, phù hợp cho các ứng dụng yêu cầu độ trễ thấp.
+**4. Phù Hợp với Dữ Liệu Thời Gian Thực:** 
 
-**5. Cộng Đồng Mạnh Mẽ và Hỗ Trợ Mở Rộng:** Kafka được sử dụng rộng rãi và có một cộng đồng lớn hỗ trợ việc phát triển và mở rộng tính năng.
+**5. Cộng Đồng Mạnh Mẽ và Hỗ Trợ Mở Rộng:** 
 
-Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging khác. Sự lựa chọn phụ thuộc vào nhu cầu cụ thể của dự án, với Kafka thường được ưa chuộng trong các trường hợp lưu trữ và xử lý lưu lượng dữ liệu lớn, đặc biệt là trong việc xây dựng hệ thống phân tán và thời gian thực. Kafka có hiệu suất nhanh chóng và ổn định, cung cấp độ bền đáng tin cậy, có đăng kí/ xuất bản linh hoạt phù hợp với số lượng Consumer Group của người tiêu dùng. Có sự sao chép mạnh mẽ, cung cấp cho các Producer sự đảm bảo tính nhất quán. Ngoài ra, Kafka hoạt động tốt với các hệ thống có luồng dữ liệu để xử lý và cho phép các hệ thống đó tổng hợp, chuyển đổi & tải vào các store khác.
+Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging khác.  afka thường được ưa chuộng trong các trường hợp lưu trữ và xử lý lưu lượng dữ liệu lớn, đặc biệt là trong việc xây dựng các hệ thống phân tán và thời gian thực. Kafka có thế mạnh là hiệu suất nhanh chóng và ổn định, cung cấp độ bền đáng tin cậy, có đăng kí/ xuất bản linh hoạt phù hợp với số lượng Consumer Group của người tiêu dùng. Cùng với sự sao chép mạnh mẽ, cung cấp cho các Producer sự đảm bảo tính nhất quán. Ngoài ra, Kafka hoạt động tốt với các hệ thống có luồng dữ liệu để xử lý và cho phép các hệ thống đó tổng hợp, chuyển đổi & tải vào các store khác.
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/3cb65fa0-b144-4166-87c3-22bdaa8106b5)
 
 ## Mô hình dùng Kafka
-* **Messaging:** Kafka có thể được sử dụng để truyền thông tin giữa các ứng dụng. Điều này có thể được sử dụng cho các ứng dụng như:  
+* **Messaging:** Như đã biết, Kafka được sử dụng để truyền thông tin giữa các ứng dụng. Các ứng dụng thường dùng Kafka như:  
 
   - Hệ thống phân phối thời gian thực  
   - Hệ thống nhắn tin  
   - Hệ thống cảnh báo
 
-* **Stream processing:** Kafka có thể được sử dụng để xử lý dữ liệu theo thời gian thực. Điều này có thể được sử dụng cho các ứng dụng như:
+* **Stream processing:** Là hệ thống có thế mạnh thu thập và xử lý lượng dữ liệu lớn trong thời gian thực nên thường được sử dụng vào:  
   - Hệ thống phân tích dữ liệu
   - Hệ thống phát hiện lỗi
   - Hệ thống phản hồi nhanh
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/8a2b94b9-93ab-4465-a202-b30d70e67bf8)
 
-* **Data integration:** Kafka có thể được sử dụng để tích hợp dữ liệu từ các nguồn khác nhau. Điều này có thể được sử dụng cho các ứng dụng như:
+* **Data integration:** Kafka còn có thể được sử dụng để tích hợp dữ liệu từ các nguồn khác nhau như:
   - Hệ thống thu thập dữ liệu
   - Hệ thống báo cáo
   - Hệ thống phân tích dữ liệu
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/b154c997-dc2b-4888-aea2-f7aa644bd91c)
 
-* **Event sourcing:** Kafka có thể được sử dụng để lưu trữ lịch sử các sự kiện. Điều này có thể được sử dụng cho các ứng dụng như:
+* **Event sourcing:** Được sử dụng để thu thập và lưu trữ lịch sử các sự kiện, thường được ứng dụng trong:
   - Hệ thống quản lý cơ sở dữ liệu
   - Hệ thống quản lý ứng dụng
   - Hệ thống phân tích dữ liệu
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/0e5bed9e-38a0-4067-89f4-ff30e934ce5b)
 
-* **Commit log:** Kafka có thể được sử dụng làm commit log cho các hệ thống phân tán. Điều này có thể được sử dụng để đảm bảo tính nhất quán của dữ liệu trong các hệ thống phân tán.
+* **Commit log:** Kafka có thể được sử dụng làm commit log cho các hệ thống phân tán đồng thời đảm bảo tính nhất quán của dữ liệu trong các hệ thống phân tán.
 
-## Các properties của consumer
+## Các properties của Consumer cần quan tâm
 
-Các properties của consumer được sử dụng để cấu hình cách thức hoạt động của consumer. Một số properties quan trọng bao gồm:
+Các properties của consumer được sử dụng để cấu hình cách thức hoạt động của consumer.
 
-- **group.id:** Đây là ID của nhóm consumer mà consumer thuộc về. Các consumer trong cùng một nhóm sẽ chia sẻ nhau công việc tiêu thụ dữ liệu.  
+- **group.id:** ID của nhóm consumer mà consumer thuộc về. Các consumer trong cùng một nhóm sẽ chia sẻ nhau công việc tiêu thụ dữ liệu.  
 
-- **bootstrap.servers:** Đây là danh sách các URL của brokers Kafka.  
+- **bootstrap.servers:** Danh sách các URL của brokers Kafka.  
 
-- **key.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các khóa dữ liệu.  
+- **key.deserializer:** Lớp giải mã được sử dụng để giải mã các khóa dữ liệu.  
 
-- **value.deserializer:** Đây là lớp giải mã được sử dụng để giải mã các giá trị dữ liệu.  
+- **value.deserializer:** Lớp giải mã được sử dụng để giải mã các giá trị dữ liệu.  
 
-- **auto.offset.reset:** Đây là cách thức mà consumer sẽ xử lý các offset dữ liệu. Có ba giá trị có thể được sử dụng:  
+- **auto.offset.reset:** Cách thức mà consumer sẽ xử lý các offset dữ liệu. Có ba giá trị có thể được sử dụng:  
   - **earliest:** Consumer sẽ bắt đầu từ offset đầu tiên của topic.  
   - **latest:** Consumer sẽ bắt đầu từ offset mới nhất của topic.  
   - **none:** Consumer sẽ không xử lý các offset dữ liệu.  
-- **max.poll.records:** Đây là số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
-- **session.timeout.ms:** Đây là khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
+- **max.poll.records:** Số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
+- **session.timeout.ms:** Khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
 
-## Các thông số cần quan tâm
-Khi sử dụng Kafka consumer, cần quan tâm đến các thông số sau:
+## Các properties của Ponsumer cần quan tâm
 
-* **Throughput:** Throughput là số lượng record mà consumer có thể tiêu thụ trong một đơn vị thời gian. Thông số này phụ thuộc vào nhiều yếu tố, bao gồm:
+Kafka Producer có một số thuộc tính quan trọng mà bạn cần quan tâm khi cấu hình Producer để tối ưu hóa hiệu suất và đảm bảo tính ổn định của hệ thống. 
 
-  - Số lượng brokers Kafka
-  - Số lượng consumer
-  - Kích thước record
-  - Tốc độ xử lý của consumer
+- **bootstrap.servers**: Địa chỉ của Kafka broker hoặc danh sách các broker. Producer sẽ gửi dữ liệu tới các broker được liệt kê ở đây.
 
-* **Latency:** Latency là khoảng thời gian giữa lúc consumer nhận được record và lúc consumer xử lý xong record. Thông số này phụ thuộc vào nhiều yếu tố, bao gồm:
+- **acks**: Quy định cách Producer xác nhận rằng một message đã được gửi thành công. Có các giá trị acks khác nhau như:
 
-  - Khoảng cách giữa consumer và brokers Kafka
-  - Số lượng brokers Kafka
-  - Kích thước record
-  - Tốc độ xử lý của consumer
+  - **0**: Producer không chờ xác nhận từ broker nào.
+  - **1**: Producer chờ xác nhận từ broker leader.
+  - **all**: Producer chờ xác nhận từ tất cả các replicas.
+- **retries**: Số lần retry khi gửi message thất bại trước khi bỏ cuộc.
 
-* **Reliability:** Reliability là khả năng của consumer để xử lý tất cả các record mà nó nhận được. Thông số này phụ thuộc vào nhiều yếu tố, bao gồm:
+- **batch.size**: Kích thước tối đa của một batch trước khi gửi đi. Batching giúp tối ưu hóa hiệu suất bằng cách gửi nhiều message cùng một lúc.
 
-  - Số lượng brokers Kafka
-  - Số lượng consumer
-  - Khả năng chịu lỗi của brokers Kafka
-  - Khả năng chịu lỗi của consumer
+- **linger.ms**: Thời gian tối đa mà Producer có thể chờ trước khi gửi một batch, ngay cả khi batch đã đầy.
 
-* **Scalability:** Scalability là khả năng của consumer để đáp ứng với sự gia tăng về khối lượng dữ liệu. Thông số này phụ thuộc vào nhiều yếu tố, bao gồm:
+- **compression.type**: Loại nén dữ liệu trước khi gửi (ví dụ: gzip, snappy). Nén có thể giảm băng thông và tăng tốc độ truyền dữ liệu.
 
-  - Khả năng mở rộng của brokers Kafka
-  - Khả năng mở rộng của consumer
+- **max.in.flight.requests.per.connection**: Số lượng tối đa các request chưa được xác nhận mà Producer có thể gửi tới một broker mà không cần chờ xác nhận.
 
-* **Cost:** Cost là chi phí để vận hành Kafka consumer. Thông số này phụ thuộc vào nhiều yếu tố, bao gồm:
+- **buffer.memory**: Bộ nhớ được cấp phát cho Producer để lưu trữ các message trước khi chúng được gửi đi.
 
-  - Số lượng brokers Kafka
-  - Số lượng consumer
-  - Khả năng xử lý của brokers Kafka
-  - Khả năng xử lý của consumer
+- **max.request.size**: Kích thước tối đa cho một request gửi tới Kafka.
+
+- **retry.backoff.ms**: Thời gian chờ giữa các lần retry.
+
+- **request.timeout.ms**: Thời gian tối đa cho một request trước khi nó bị timeout.
