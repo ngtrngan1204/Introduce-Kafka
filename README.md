@@ -86,7 +86,7 @@ Các properties của consumer được sử dụng để cấu hình cách th�
 - **max.poll.records:** Số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
 - **session.timeout.ms:** Khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
 
-## Các properties của Ponsumer cần quan tâm
+## Các properties của Producer cần quan tâm
 
 Kafka Producer có một số thuộc tính quan trọng mà bạn cần quan tâm khi cấu hình Producer để tối ưu hóa hiệu suất và đảm bảo tính ổn định của hệ thống. 
 
