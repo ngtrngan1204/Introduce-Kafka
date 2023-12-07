@@ -52,7 +52,9 @@ def get_data(m_id):
     if data:
         return jsonify({m_id : json.loads(data)}) # Nếu key đúng thì trả về dữ liệu từ Redis
     else:
-        return 'Data not found!!' # Nếu key sai thì thông báo Data not found
+        response = jsonify({"status": "Data not found"})
+        response.status_code = 404  # Trả về status code 404 - Not Found
+        return response  # Nếu key sai thì thông báo Data not found
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5050)
