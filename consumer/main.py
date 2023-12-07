@@ -2,25 +2,29 @@ from confluent_kafka import Consumer, KafkaException
 import redis
 import json
 
-# Kafka broker endpoint
+# Cấu hình Kafka
 bootstrap_servers = '118.68.13.3:8099'
 topic = 'logger-testing'
 
 conf = {
     'bootstrap.servers': bootstrap_servers,
-    'group.id': 'group_1',  # Consumer group ID
-    'auto.offset.reset': 'earliest'
+    'group.id': '1',  
+    'auto.offset.reset': 'earliest' # Thiết lập offset reset khi Consumer bắt đầu
 }
 
-r = redis.StrictRedis(host='my-redis', port=6379, decode_responses=True)
+# Kết nối tới Redis
+r = redis.StrictRedis(host='localhost', port=6379, decode_responses=True)
 
+# Khởi tạo Consumer và subscribe vào topic
 consumer = Consumer(conf)
 consumer.subscribe([topic])
 
 try:
     while True:
+        # Nhận message từ Kafka
         message = consumer.poll(1.0)
 
+         # Xử lý lỗi
         if message is None:
             continue
         if message.error():
@@ -30,9 +34,10 @@ try:
                 print(f"Error: {message.error()}")
                 break
         
-        data = message.value().decode('utf-8')
-        print(data)
-        r.set('id', data)
+        data = message.value().decode('utf-8') # Giải mã dữ liệu từ message nhận được
+        key = message.key().decode('utf-8') # Lấy key của data
+        r.set(key, data) # Lưu data vào Redis
+        print(f"{key} : {json.loads(data)}") # In thông tin dữ liệu đã lưu vào Redis
         
 except KeyboardInterrupt:
     pass
