@@ -31,10 +31,10 @@ kafka_producer = Producer(producer_conf)
 
 def delivery_report(err, msg):
     if err is not None:
-        print(f'Message delivery failed: {err.code()}')
+        logging.error(f'Message delivery failed: {err.code()}')
         # Ghi log lỗi, xử lý thử lại hoặc các hành động khác
     else:
-        logging.error(f'Message delivered to {msg.topic()} [{msg.partition()}]')
+        print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
 
 # Endpoint nhận dữ liệu POST từ client rồi gửi đến Kafka
 @app.route('/cpu-info/<id_counter>', methods=['POST'])
