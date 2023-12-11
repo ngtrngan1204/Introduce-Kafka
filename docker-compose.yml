@@ -4,16 +4,29 @@ services:
   app-server1:
     build:
       context: ./get 
+    environment:
+      - SERVER=118.68.13.3:8099
+      - TOPIC='logger-testing'
+      - GROUP_ID='group_1'
+      - AUTO_OFFSET='earliest'
     networks:
       - mybridge
+    volumes:
+      - my-data:/app
+
 
   app-server2:
     build:
       context: ./post 
     ports:
       - "5050:5050"
+    environment:
+      - SERVER=118.68.13.3:8099
+      - TOPIC='logger-testing'
     networks:
       - mybridge
+    volumes:
+      - my-data:/app
 
   my-redis:
     image: 'bitnami/redis:latest'
@@ -21,6 +34,14 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     networks:
       - mybridge
+    ports:
+      - "6379:6379"
+    volumes:
+      - my-redis:/bitnami/redis/data
+
+volumes:
+  my-redis:
+  my-data:
 
 networks:
   mybridge:
