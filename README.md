@@ -1,21 +1,30 @@
-# Kafka - Cơ bản về Hệ thống Truyền Tin
-## Giới thiệu về Kafka
-Kafka là một hệ thống truyền tin (messaging system) mã nguồn mở được thiết kế để xử lý và truyền tin nhắn (messages) một cách linh hoạt, hiệu quả và bền bỉ. Nó được xây dựng để xử lý lưu lượng dữ liệu lớn và duy trì tính đáng tin cậy cao.
+# Kafka 
+## Introduction
+
+Kafka combines three key capabilities so you can implement your use cases for event streaming end-to-end with a single battle-tested solution:
+
+  - **To publish (write) and subscribe to (read) streams of events, including continuous import/export of your data from other systems.**
+  - **To store streams of events durably and reliably for as long as you want.**
+  - **To process streams of events as they occur or retrospectively.**
+
+And all this functionality is provided in a distributed, highly scalable, elastic, fault-tolerant, and secure manner.
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/70ac7ea7-f603-4481-b616-05cec1f86680)
 
 
-## Các Khái Niệm Cơ Bản
-### **1. Topic**
-Là một phân loại hoặc danh mục cho các tin nhắn. Mỗi tin nhắn được sản xuất (published) và tiêu thụ (consumed) trong Kafka đều thuộc về một topic cụ thể.
-### **2. Partition**
-Partition là một phần của một topic trong Kafka. Các partition cho phép dữ liệu được chia nhỏ, phân tán trên nhiều máy chủ (brokers) để tăng khả năng mở rộng và hiệu suất.
-### **3. Producer**
-Producer là thành phần gửi dữ liệu (messages) tới Kafka topic. Nó chịu trách nhiệm sản xuất dữ liệu và gửi nó tới các topic cụ thể trong Kafka.
-### **4. Consumer**
-Là thành phần nhận và xử lý dữ liệu từ Kafka topic. Consumer đọc các tin nhắn từ các topic và thực hiện các hành động như lưu trữ, xử lý hoặc truyền dữ liệu đó ra ngoài.
-### **5. Ứng Dụng**
-Các ứng dụng có thể là producers (gửi dữ liệu) hoặc consumers (nhận và xử lý dữ liệu) trong hệ thống Kafka.
+## How it works and basic concepts
+Kafka is a distributed system consisting of servers and clients communicating via a high-performance TCP network protocol. 
+**Servers**: Kafka is run as a cluster of one or more servers that can span multiple data centres or cloud regions. Some of these servers form the storage layer, called the brokers. Other servers run Kafka Connect to continuously import and export data as event streams to integrate Kafka with your existing systems such as relational databases as well as other Kafka clusters. To let you implement mission-critical use cases, a Kafka cluster is highly scalable and fault-tolerant.
+
+**Clients**: They allow you to write distributed applications and microservices that read, write, and process streams of events in parallel, at scale, and in a fault-tolerant manner even in the case of network problems or machine failures.
+
+An **event** records also called record or message. When you read or write data to Kafka, you do this in the form of events.
+
+**Producers** are those client applications that publish (write) events to Kafka, and **consumers** are those that subscribe to (read and process) these events. In Kafka, producers and consumers are fully decoupled and agnostic of each other, which is a key design element to achieve high scalability
+
+Events are organized and durably stored in **topics**. Very simplified, a topic is similar to a folder in a filesystem, and the events are the files in that folder. Topics in Kafka are always multi-producer and multi-subscriber: a topic can have zero, one, or many producers that write events to it, as well as zero, one, or many consumers that subscribe to these events. 
+
+Topics are **partitioned**, meaning a topic is spread over several "buckets" located on different Kafka brokers. This distributed placement of your data is very important for scalability because it allows client applications to both read and write the data from/to many brokers at the same time. When a new event is published to a topic, it is actually appended to one of the topic's partitions. Events with the same event key (e.g., a customer or vehicle ID) are written to the same partition, and Kafka guarantees that any consumer of a given topic-partition will always read that partition's events in exactly the same order as they were written.
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/2f3667e5-230b-4b99-9f64-040eedc82327)
 
@@ -37,26 +46,35 @@ Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging kh�
 
 ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/3cb65fa0-b144-4166-87c3-22bdaa8106b5)
 
-## Mô hình dùng Kafka
-* **Messaging:** Như đã biết, Kafka được sử dụng để truyền thông tin giữa các ứng dụng. Các ứng dụng thường dùng Kafka như:  
+## Use Cases
+* **Messaging:** Kafka works well as a replacement for a more traditional message broker. Message brokers are used for a variety of reasons (to decouple processing from data producers, to buffer unprocessed messages, etc). In comparison to most messaging systems Kafka has better throughput, built-in partitioning, replication, and fault-tolerance which makes it a good solution for large scale message processing applications.
 
-  - Hệ thống phân phối thời gian thực  
-  - Hệ thống nhắn tin  
-  - Hệ thống cảnh báo
 
-* **Stream processing:** Là hệ thống có thế mạnh thu thập và xử lý lượng dữ liệu lớn trong thời gian thực nên thường được sử dụng vào:  
-  - Hệ thống phân tích dữ liệu
-  - Hệ thống phát hiện lỗi
-  - Hệ thống phản hồi nhanh
+* **Website Activity Tracking**: The original use case for Kafka was to be able to rebuild a user activity tracking pipeline as a set of real-time publish-subscribe feeds. This means site activity (page views, searches, or other actions users may take) is published to central topics with one topic per activity type. These feeds are available for subscription for a range of use cases including real-time processing, real-time monitoring, and loading into Hadoop or offline data warehousing systems for offline processing and reporting.
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/8a2b94b9-93ab-4465-a202-b30d70e67bf8)
+  - Apache Kafka is a core part of infrastructure at LinkedIn. It was originally developed in-house as a stream processing platform and was subsequently open-sourced, with a large external adoption rate today. Kafka is used extensively throughout software stack, powering use cases like activity tracking, message exchanges, metric gathering, and more. LinkedIn maintains over 100 Kafka clusters with more than 4,000 brokers, which serve more than 100,000 topics and 7 million partitions. The total number of messages handled by LinkedIn’s Kafka deployments recently surpassed 7 trillion per day.
+  - The streaming ecosystem built around Apache Kafka is a key part of our technology stack at LinkedIn. The ecosystem includes the following components:
 
-* **Data integration:** Kafka còn có thể được sử dụng để tích hợp dữ liệu từ các nguồn khác nhau như:
-  - Hệ thống thu thập dữ liệu
-  - Hệ thống báo cáo
-  - Hệ thống phân tích dữ liệu
+      - Kafka clusters, consisting of brokers 
+      - Application with Kafka client
+      - REST proxy for serving non-Java client
+      - Schema registry for maintaining Avro schemas
+      - Brooklin for mirroring among clusters
+      - Cruise Control for Apache Kafka for cluster maintenance and self-healing
+      - Pipeline completeness audit and a usage monitor called “Bean Counter”
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/b154c997-dc2b-4888-aea2-f7aa644bd91c)
+        ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/dfb42baf-7c16-426c-a4b3-8a3c703d01f3)
+
+
+* **Stream processing:** Many users of Kafka process data in processing pipelines consisting of multiple stages, where raw input data is consumed from Kafka topics and then aggregated, enriched, or otherwise transformed into new topics for further consumption or follow-up processing.
+  - Netflix embraces Apache Kafka® as the de-facto standard for its eventing, messaging, and stream processing needs. Kafka acts as a bridge for all point-to-point and Netflix Studio wide communications. It provides with the high durability and linearly scalable, multi-tenant architecture required for operating systems at Netflix. In-house Kafka as a service offering provides fault tolerance, observability, multi-region deployments, and self-service. This makes it easier for entire ecosystem of microservices to easily produce and consume meaningful events and unleash the power of asynchronous communication.
+  - A typical message exchange within Netflix Studio ecosystem looks like this:
+
+    ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/c405d72d-49d3-4551-87e4-8c1dc5ed1838)
+
+
+
+* **Log Aggregation**: Many people use Kafka as a replacement for a log aggregation solution. Log aggregation typically collects physical log files off servers and puts them in a central place (a file server or HDFS perhaps) for processing. Kafka abstracts away the details of files and gives a cleaner abstraction of log or event data as a stream of messages. This allows for lower-latency processing and easier support for multiple data sources and distributed data consumption
 
 * **Event sourcing:** Được sử dụng để thu thập và lưu trữ lịch sử các sự kiện, thường được ứng dụng trong:
   - Hệ thống quản lý cơ sở dữ liệu
