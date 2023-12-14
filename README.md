@@ -9,7 +9,7 @@ Kafka combines three key capabilities so you can implement your use cases for ev
 
 And all this functionality is provided in a distributed, highly scalable, elastic, fault-tolerant, and secure manner.
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/70ac7ea7-f603-4481-b616-05cec1f86680)
+   ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/70ac7ea7-f603-4481-b616-05cec1f86680)
 
 
 ## How it works and basic concepts
@@ -26,29 +26,36 @@ Events are organized and durably stored in **topics**. Very simplified, a topic 
 
 Topics are **partitioned**, meaning a topic is spread over several "buckets" located on different Kafka brokers. This distributed placement of your data is very important for scalability because it allows client applications to both read and write the data from/to many brokers at the same time. When a new event is published to a topic, it is actually appended to one of the topic's partitions. Events with the same event key (e.g., a customer or vehicle ID) are written to the same partition, and Kafka guarantees that any consumer of a given topic-partition will always read that partition's events in exactly the same order as they were written.
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/2f3667e5-230b-4b99-9f64-040eedc82327)
+  ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/2f3667e5-230b-4b99-9f64-040eedc82327)
 
 
-## Tại sao chọn Kafka?
-Kafka có một số ưu điểm mà khiến nó trở thành lựa chọn phổ biến:
+## Benefits of using Kafka
 
-**1. Tính Khả Dụng và Bền Bỉ:** 
+- **Real-Time Data Processing**: Kafka is designed for real-time data processing and streaming, allowing respond quickly to emerging events. This is useful for monitoring, analysis, and immediate response to changing situations.
 
-**2. Phân Tán và Hiệu Suất Cao:**
+- **High Consistency and Reliability**: Keeps data consistent through backup and message replication across brokers. This ensures data is not lost and is always available for consuming applications.
 
-**3. Hỗ Trợ Tính Toàn Vẹn Dữ Liệu:** 
+- **Easy Scalability**: Easily scalable by adding brokers to the cluster. This allows increased data processing capacity without changing the entire system structure.
 
-**4. Phù Hợp với Dữ Liệu Thời Gian Thực:** 
+- **Diverse Data**: Kafka not only supports regular data but is also capable of processing diverse data such as logs, application status, events related to financial transactions, and many other types of data.
 
-**5. Cộng Đồng Mạnh Mẽ và Hỗ Trợ Mở Rộng:** 
+- **Large Volume Ability**: Through the use of partitioning, it is capable of handling large amounts of data efficiently. This makes it suitable for situations that need to process billions of events per day.
 
-Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging khác.  afka thường được ưa chuộng trong các trường hợp lưu trữ và xử lý lưu lượng dữ liệu lớn, đặc biệt là trong việc xây dựng các hệ thống phân tán và thời gian thực. Kafka có thế mạnh là hiệu suất nhanh chóng và ổn định, cung cấp độ bền đáng tin cậy, có đăng kí/ xuất bản linh hoạt phù hợp với số lượng Consumer Group của người tiêu dùng. Cùng với sự sao chép mạnh mẽ, cung cấp cho các Producer sự đảm bảo tính nhất quán. Ngoài ra, Kafka hoạt động tốt với các hệ thống có luồng dữ liệu để xử lý và cho phép các hệ thống đó tổng hợp, chuyển đổi & tải vào các store khác.
+- **Flexible integration**: Kafka has the ability to integrate with many other technologies and applications, can use different programming languages ​​to write producer and consumer applications, and Kafka also supports different transport protocols.
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/3cb65fa0-b144-4166-87c3-22bdaa8106b5)
+- **Long-Term Data Storage**: In addition to real-time data processing, it is also capable of long-term data storage. This allows storage and retrieval of event data in the future for analysis and auditing.
+
+- **Log System**: Kafka acts as a log system, allowing storage and search of event information over time, useful for debugging, data analysis, and monitoring system activity.
+
+    ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/3cb65fa0-b144-4166-87c3-22bdaa8106b5)
+
 
 ## Use Cases
 * **Messaging:** Kafka works well as a replacement for a more traditional message broker. Message brokers are used for a variety of reasons (to decouple processing from data producers, to buffer unprocessed messages, etc). In comparison to most messaging systems Kafka has better throughput, built-in partitioning, replication, and fault-tolerance which makes it a good solution for large scale message processing applications.
-
+  - At PayPal, Kafka is used for first-party tracking, application health metrics streaming and aggregation, database synchronization, application log aggregation, batch processing, risk detection and management, and analytics and compliance, with each of these use-cases processing over 100 billion messages per day. Kafka fleet consists of over 1,500 brokers that host over 20,000 topics and close to 2,000 Mirror Maker nodes which are used to mirror the data among the clusters, offering 99.99% availability for our Kafka clusters.
+  - PayPal infrastructure is spread across multiple geographically distributed data centres and security zones. The Kafka clusters are deployed across these zones, based on data classification and business requirements. MirrorMaker is used to mirror the data across the data centers, which helps with disaster recovery and to achieve inter-security zone communication.
+  
+    ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/bc619b23-8743-42f4-b00b-fd469b09fee4)
 
 * **Website Activity Tracking**: The original use case for Kafka was to be able to rebuild a user activity tracking pipeline as a set of real-time publish-subscribe feeds. This means site activity (page views, searches, or other actions users may take) is published to central topics with one topic per activity type. These feeds are available for subscription for a range of use cases including real-time processing, real-time monitoring, and loading into Hadoop or offline data warehousing systems for offline processing and reporting.
 
@@ -73,62 +80,75 @@ Kafka không hoàn toàn thay thế Redis hoặc các hệ thống messaging kh�
     ![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/c405d72d-49d3-4551-87e4-8c1dc5ed1838)
 
 
-
 * **Log Aggregation**: Many people use Kafka as a replacement for a log aggregation solution. Log aggregation typically collects physical log files off servers and puts them in a central place (a file server or HDFS perhaps) for processing. Kafka abstracts away the details of files and gives a cleaner abstraction of log or event data as a stream of messages. This allows for lower-latency processing and easier support for multiple data sources and distributed data consumption
 
-* **Event sourcing:** Được sử dụng để thu thập và lưu trữ lịch sử các sự kiện, thường được ứng dụng trong:
-  - Hệ thống quản lý cơ sở dữ liệu
-  - Hệ thống quản lý ứng dụng
-  - Hệ thống phân tích dữ liệu
+* **Commit Log**: Kafka can serve as a kind of external commit-log for a distributed system. The log helps replicate data between nodes and acts as a re-syncing mechanism for failed nodes to restore their data.
 
-![image](https://github.com/ngtrngan1204/Introduce-Kafka/assets/109300791/0e5bed9e-38a0-4067-89f4-ff30e934ce5b)
+## Important properties of Kafka Consumer
 
-* **Commit log:** Kafka có thể được sử dụng làm commit log cho các hệ thống phân tán đồng thời đảm bảo tính nhất quán của dữ liệu trong các hệ thống phân tán.
+  - **bootstrap.servers**: A list of host/port pairs used to establish the initial connection to the Kafka cluster. The consumer needs to discover the cluster and start consuming messages.
 
-## Các properties của Consumer cần quan tâm
+  - **group.id**: Specifies the consumer group the consumer belongs to. Consumers in the same group collaborate to consume messages from a topic.
+  
+  - **key.deserializer**: Defines the class responsible for deserializing the message keys from bytes to their actual data type.
+  
+  - **value.deserializer**: Similar to the key deserializer, this class handles deserialization of message values.
+  
+  - **fetch.min.bytes**: Specifies the minimum amount of data the consumer expects in a fetch request. It influences the efficiency of data transfer.
+  
+  - **fetch.max.bytes**: Sets the maximum number of bytes the consumer retrieves per partition in a fetch request.
+  
+  - **enable.auto.commit**: Controls whether the consumer automatically commits offsets after consuming messages. Disabling it allows for manual commit control.
+  
+  - **auto.offset.reset**: Determines how the consumer handles the initial offset when starting for the first time or after a rebalance.
+  
+  - **isolation.level**: Defines the level of data isolation between consumers in the same group, ensuring consistent data processing.
+  
+  - **max.poll.records**: Limits the number of records returned in each poll call, influencing processing efficiency and resource consumption.
+  
+  - **session.timeout.ms**: Defines the inactivity period after which the consumer is considered disconnected from the group and triggers a rebalance.
+  
+  - **heartbeat.interval.ms**: Specifies the interval at which the consumer sends heartbeats to the group coordinator, indicating its active status.
 
-Các properties của consumer được sử dụng để cấu hình cách thức hoạt động của consumer.
+## Important properties of Kafka Producer
 
-- **group.id:** ID của nhóm consumer mà consumer thuộc về. Các consumer trong cùng một nhóm sẽ chia sẻ nhau công việc tiêu thụ dữ liệu.  
+  - **bootstrap.servers**: Defines a list of host/port pairs used to establish the initial connection to the Kafka cluster. This facilitates cluster discovery and message sending by the producer.
 
-- **bootstrap.servers:** Danh sách các URL của brokers Kafka.  
+  - **acks**: Specifies the level of acknowledgment required from the Kafka brokers before considering a message sent successfully. Possible values include:
+    - **0**: Fire-and-forget; no acknowledgment is requested.
+  
+    - **1**: Wait for acknowledgment from the leader of the partition.
+    
+    - **all**: Wait for acknowledgment from all replicas of the partition.
+  - **key.serializer**: Defines the class responsible for serializing message keys from their actual data type to bytes.
+  
+  - **value.serializer**: Similar to the key.serializer, this property defines the class used to serialize message values.
 
-- **key.deserializer:** Lớp giải mã được sử dụng để giải mã các khóa dữ liệu.  
+  - **retries**: Sets the number of times the producer retries sending a message in case of failure.
+  
+  - **enable.idempotence**: Enables idempotent message delivery, ensuring that each message is delivered exactly once, even in case of retries or network issues.
+  
+  - **batch.size**: Configures the size of the batch used for sending messages. Larger batches can improve throughput but increase latency.
+  
+  - **linger.ms**: Defines the maximum amount of time the producer waits for more messages to be added to the batch before sending it.
+  
+  - **buffer.memory**: Sets the maximum amount of memory the producer can use for buffering messages before sending them.
+  
+  - **max.in.flight.requests.per.connection**: Limits the number of outstanding requests the producer can have per connection.
 
-- **value.deserializer:** Lớp giải mã được sử dụng để giải mã các giá trị dữ liệu.  
+## Example usage
 
-- **auto.offset.reset:** Cách thức mà consumer sẽ xử lý các offset dữ liệu. Có ba giá trị có thể được sử dụng:  
-  - **earliest:** Consumer sẽ bắt đầu từ offset đầu tiên của topic.  
-  - **latest:** Consumer sẽ bắt đầu từ offset mới nhất của topic.  
-  - **none:** Consumer sẽ không xử lý các offset dữ liệu.  
-- **max.poll.records:** Số lượng record tối đa mà consumer sẽ xử lý trong một lần poll.  
-- **session.timeout.ms:** Khoảng thời gian tối đa mà consumer có thể không gửi yêu cầu nào đến brokers Kafka. Nếu consumer không gửi yêu cầu nào trong khoảng thời gian này, nó sẽ bị loại bỏ khỏi nhóm consumer.  
+  - **Consumer**:  initializes a Kafka consumer with specified configurations, subscribes to a given topic, and continuously polls for messages. When a message is received, it's checked for successful reception and any potential errors. If the message is error-free, it decodes the data, extracts the key, and attempts to store this data into Redis. If successful, it prints a success message; otherwise, it logs the error.
+  - **Producer**: a Flask application serving as an API for handling CPU information. It consists of two endpoints:
+    - **POST Endpoint (/cpu-info/<id_counter>)**:
 
-## Các properties của Producer cần quan tâm
+      - Receives CPU information data in JSON format via POST requests.
+      - Validates the received JSON data, ensuring it contains specific required fields of integer type.
+      - Sends the validated data to a Kafka topic using a Kafka producer.
+      - Responds with the posted data in JSON format or appropriate error messages if the data is invalid.
+  
+    - **GET Endpoint (/cpu-info/<m_id>)**:
 
-Kafka Producer có một số thuộc tính quan trọng mà bạn cần quan tâm khi cấu hình Producer để tối ưu hóa hiệu suất và đảm bảo tính ổn định của hệ thống. 
-
-- **bootstrap.servers**: Địa chỉ của Kafka broker hoặc danh sách các broker. Producer sẽ gửi dữ liệu tới các broker được liệt kê ở đây.
-
-- **acks**: Quy định cách Producer xác nhận rằng một message đã được gửi thành công. Có các giá trị acks khác nhau như:
-
-  - **0**: Producer không chờ xác nhận từ broker nào.
-  - **1**: Producer chờ xác nhận từ broker leader.
-  - **all**: Producer chờ xác nhận từ tất cả các replicas.
-- **retries**: Số lần retry khi gửi message thất bại trước khi bỏ cuộc.
-
-- **batch.size**: Kích thước tối đa của một batch trước khi gửi đi. Batching giúp tối ưu hóa hiệu suất bằng cách gửi nhiều message cùng một lúc.
-
-- **linger.ms**: Thời gian tối đa mà Producer có thể chờ trước khi gửi một batch, ngay cả khi batch đã đầy.
-
-- **compression.type**: Loại nén dữ liệu trước khi gửi (ví dụ: gzip, snappy). Nén có thể giảm băng thông và tăng tốc độ truyền dữ liệu.
-
-- **max.in.flight.requests.per.connection**: Số lượng tối đa các request chưa được xác nhận mà Producer có thể gửi tới một broker mà không cần chờ xác nhận.
-
-- **buffer.memory**: Bộ nhớ được cấp phát cho Producer để lưu trữ các message trước khi chúng được gửi đi.
-
-- **max.request.size**: Kích thước tối đa cho một request gửi tới Kafka.
-
-- **retry.backoff.ms**: Thời gian chờ giữa các lần retry.
-
-- **request.timeout.ms**: Thời gian tối đa cho một request trước khi nó bị timeout.
+      - Retrieves CPU information data from Redis based on the provided <m_id>.
+      - If the data exists in Redis associated with the given <m_id>, it responds with the data in JSON format.
+      - If the data is not found, it returns a "Data not found" error message with a status code 404.
