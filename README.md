@@ -152,3 +152,4 @@ Topics are **partitioned**, meaning a topic is spread over several "buckets" loc
       - Retrieves CPU information data from Redis based on the provided <m_id>.
       - If the data exists in Redis associated with the given <m_id>, it responds with the data in JSON format.
       - If the data is not found, it returns a "Data not found" error message with a status code 404.
+  - **Instruction document**: http://ngan.cpe-lab.com:5050/docs
