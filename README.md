@@ -136,10 +136,22 @@ Topics are **partitioned**, meaning a topic is spread over several "buckets" loc
   
   - **max.in.flight.requests.per.connection**: Limits the number of outstanding requests the producer can have per connection.
 
+## Sample
+  - **Docker compose**: environment
+    - **Zookeeper**: `ALLOW_ANONYMOUS_LOGIN: 'yes'`
+    - **Kafka**:
+        ```
+        - KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+        - ALLOW_PLAINTEXT_LISTENER: 'yes'
+        - KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+    - Run the command to create topic:
+      ```
+      docker exec -it KAFKA  kafka-topics.sh --create --topic testing --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
 ## Example usage
 
   - **Consumer**:  initializes a Kafka consumer with specified configurations, subscribes to a given topic, and continuously polls for messages. When a message is received, it's checked for successful reception and any potential errors. If the message is error-free, it decodes the data, extracts the key, and attempts to store this data into Redis. If successful, it prints a success message; otherwise, it logs the error.
-  - **Producer**: a Flask application serving as an API for handling CPU information. It consists of two endpoints:
+  - **Producer**: a FastAPI application serving as an API for handling CPU information. It consists of two endpoints:
     - **POST Endpoint (/cpu-info/<id_counter>)**:
 
       - Receives CPU information data in JSON format via POST requests.
