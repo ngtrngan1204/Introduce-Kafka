@@ -1,15 +1,15 @@
 from confluent_kafka import Consumer, KafkaException
 
 # Kafka broker endpoint
-bootstrap_servers = '118.68.13.3:8098'
+bootstrap_servers = 'localhost:9092'
 
 # Kafka topic to consume from
-topic = 'logger-testing'
+topic = 'testing'
 
 # Kafka consumer configuration
 conf = {
     'bootstrap.servers': bootstrap_servers,
-    'group.id': 'group_1',
+    'group.id': 'group_test',
 }
 
 consumer = Consumer(conf)
