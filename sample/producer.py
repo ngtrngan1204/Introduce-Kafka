@@ -1,8 +1,8 @@
 from confluent_kafka import Producer
 
 # Kafka broker details
-bootstrap_servers = '118.68.13.3:8098'
-topic = 'logger-testing'
+bootstrap_servers = 'localhost:9092'
+topic = 'testing'
 
 # Kafka producer configuration with basic authentication
 conf = {
