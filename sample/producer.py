@@ -1,12 +1,12 @@
 from confluent_kafka import Producer
 
 # Kafka broker details
-bootstrap_servers = 'localhost:9092'
+bootstrap_servers = '1.52.246.121:9092'
 topic = 'testing'
 
 # Kafka producer configuration with basic authentication
 conf = {
-    'bootstrap.servers': bootstrap_servers,
+    'bootstrap.servers': bootstrap_servers
 }
 
 def delivery_report(err, msg):
