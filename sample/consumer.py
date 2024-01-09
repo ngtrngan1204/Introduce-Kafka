@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer, KafkaException
 
 # Kafka broker endpoint
-bootstrap_servers = 'localhost:9092'
+bootstrap_servers = '1.52.246.121:9092'
 
 # Kafka topic to consume from
 topic = 'testing'
