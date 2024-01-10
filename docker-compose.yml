@@ -5,10 +5,10 @@ services:
     build:
       context: ./get 
     environment:
-      - SERVER=118.68.13.3:8099
-      - TOPIC='logger-testing'
-      - GROUP_ID='group_1'
-      - AUTO_OFFSET='earliest'
+      - SERVER=kafka:9092 # Set public ip is Kafka host
+      - TOPIC=logger-testing
+      - GROUP_ID=group_1
+      - AUTO_OFFSET=earliest
     networks:
       - mybridge
     volumes:
@@ -21,8 +21,8 @@ services:
     ports:
       - "5050:5050"
     environment:
-      - SERVER=118.68.13.3:8099
-      - TOPIC='logger-testing'
+      - SERVER=kafka:9092 # Set public ip is Kafka host
+      - TOPIC=logger-testing
     networks:
       - mybridge
     volumes:
