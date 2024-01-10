@@ -149,7 +149,7 @@ Topics are **partitioned**, meaning a topic is spread over several "buckets" loc
         KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL   # The listener used for communication between brokers
         BOOTSTRAP_SERVERS: kafka:9092   # Defines the initial brokers as a comma-separated list for Kafka clients to connect
     - **Kowl**:
-        `KAFKA_BROKERS: "kafka:9092"   # Kafka broker address that Kowl will use to connect and interact with Kafka
+        `KAFKA_BROKERS: "kafka:9092"   # Kafka broker address that Kowl will use to connect and interact with Kafka`
     - Set the ip address to host Kafka:
       ```
       nano /etc/hosts
@@ -157,7 +157,8 @@ Topics are **partitioned**, meaning a topic is spread over several "buckets" loc
       1.52.246.121 Kafka # Public ip
     - Run the command to create topic:
       ```
-      docker exec -it KAFKA  kafka-topics.sh --create --topic testing --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1  
+      docker exec -it KAFKA  kafka-topics.sh --create --topic testing --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1
+    - Kowl UI: ngan.cpe-lab.com:8080
 ## Example usage
 
   - **Consumer**:  initializes a Kafka consumer with specified configurations, subscribes to a given topic, and continuously polls for messages. When a message is received, it's checked for successful reception and any potential errors. If the message is error-free, it decodes the data, extracts the key, and attempts to store this data into Redis. If successful, it prints a success message; otherwise, it logs the error.
